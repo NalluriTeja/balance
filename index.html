@@ -3,193 +3,62 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Balance Calculator</title>
+    <title>Home Page</title>
     <style>
         body {
-            font-family: 'Roboto', sans-serif;
-            margin: 20px;
+            font-family: Arial, sans-serif;
             background-color: #f4f4f9;
-            color: #333;
+            padding: 0;
+            margin: 0;
+        }
+        nav {
+            background-color: #4CAF50;
+            padding: 15px;
+            text-align: center;
+        }
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 10px;
+            font-size: 16px;
+        }
+        nav a:hover {
+            text-decoration: underline;
         }
         h1 {
             text-align: center;
-            color: #4CAF50;
+            margin-top: 50px;
         }
-        .form-group {
-            margin-bottom: 15px;
-        }
-        label {
-            display: block;
-            margin-bottom: 5px;
-        }
-        input {
-            padding: 6px;
-            width: auto;
-            box-sizing: border-box;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-        }
-        .header {
-            display: flex;
-            gap: 5px;
-            font-weight: bold;
-            color: red;
-            margin-bottom: 10px;
-        }
-        .header div {
+        .welcome {
             text-align: center;
-        }
-        .serial-number-header {
-            width: 60px;
-        }
-        .name-header {
-            width: 150px;
-        }
-        .amount-header, .paid-header {
-            width: 100px;
-        }
-        .row {
-            display: flex;
-            gap: 5px;
-            align-items: center;
-            margin-bottom: 5px;
+            margin: 20px 0;
+            font-size: 18px;
         }
         button {
+            display: block;
             background-color: #4CAF50;
             color: white;
-            border: none;
             padding: 10px 20px;
+            border: none;
             border-radius: 5px;
             cursor: pointer;
-            margin: 5px;
+            margin: 20px auto;
         }
         button:hover {
             background-color: #45a049;
         }
-        .result {
-            margin-top: 20px;
-            font-size: 18px;
-            background-color: #fff;
-            padding: 20px;
-            border-radius: 5px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-        }
-        .result .item {
-            background-color: #e9f7ef;
-            padding: 15px;
-            border: 1px solid #c8e6c9;
-            border-radius: 5px;
-            width: 220px;
-            box-sizing: border-box;
-        }
-        .result .item p {
-            margin: 5px 0;
-        }
-        .result .item p strong {
-            color: inherit;
-        }
-        .item-header {
-            font-weight: bold;
-            color: red;
-            margin-bottom: 10px;
-        }
-        .total {
-            font-weight: bold;
-            font-size: 22px;
-            text-align: center;
-            margin-top: 20px;
-            color: #2d89ef;
-            width: 100%;
-        }
-        .serial-number {
-            width: 60px;
-            text-align: center;
-        }
-        .note {
-            display: none;
-        }
     </style>
-    <script>
-        function addRow() {
-            const rowsContainer = document.getElementById('rows-container');
-            const row = document.createElement('div');
-            row.className = 'row';
-            row.innerHTML = `
-                <input type="text" class="serial-number" disabled value="${rowsContainer.children.length + 1}" style="width: 60px;">
-                <input type="text" placeholder="Name" class="name" style="width: 150px;">
-                <input type="number" placeholder="Amount" class="amount" style="width: 100px;">
-                <input type="number" placeholder="Paid" class="paid" style="width: 100px;">
-            `;
-            rowsContainer.appendChild(row);
-        }
-
-        function calculateBalance() {
-            const rows = document.querySelectorAll('.row');
-            let resultsHtml = '';
-            let totalBalance = 0;
-
-            rows.forEach((row, index) => {
-                const name = row.querySelector('.name').value || "N/A";
-                const amount = parseFloat(row.querySelector('.amount').value) || 0;
-                const paid = parseFloat(row.querySelector('.paid').value) || 0;
-                const balance = amount - paid;
-
-                totalBalance += balance;
-
-                resultsHtml += `
-                    <div class="item">
-                        <div class="item-header">Item ${index + 1}</div>
-                        <p><strong>S.No:</strong> ${index + 1}</p>
-                        <p><strong>Name:</strong> ${name}</p>
-                        <p><strong>Total Amount:</strong> ₹${amount.toFixed(2)}</p>
-                        <p><strong>Paid Amount:</strong> ₹${paid.toFixed(2)}</p>
-                        <p><strong>Remaining Balance:</strong> ₹${balance.toFixed(2)}</p>
-                    </div>
-                `;
-            });
-
-            resultsHtml += `<p class="total">Total Remaining Balance: ₹${totalBalance.toFixed(2)}</p>`;
-
-            document.getElementById('result').innerHTML = resultsHtml;
-        }
-
-        function sendEmail() {
-            const email = document.getElementById('email').value;
-            const resultContent = document.getElementById('result').innerText;
-
-            if (email && resultContent.trim()) {
-                const mailToLink = `mailto:${email}?subject=Balance Calculation Results&body=${encodeURIComponent(resultContent)}`;
-                window.location.href = mailToLink;
-            } else {
-                alert("Please enter an email and calculate balance before sending.");
-            }
-        }
-    </script>
 </head>
 <body>
-    <h1>Balance Calculator</h1>
-
-    <div class="header">
-        <div class="serial-number-header">S.No</div>
-        <div class="name-header">Name</div>
-        <div class="amount-header">Amount</div>
-        <div class="paid-header">Paid</div>
+    <nav>
+        <a href="home.html">Home</a>
+        <a href="balance.html">Balance Calculator</a>
+        <a href="login.html">Logout</a>
+    </nav>
+    <h1>Welcome to the Balance Calculator App</h1>
+    <div class="welcome">
+        Hello, User! Explore the application to manage your balances effectively.
     </div>
-
-    <div id="rows-container"></div>
-
-    <button onclick="addRow()">Add Row</button>
-    <button onclick="calculateBalance()">Calculate Balance</button>
-
-    <div class="form-group">
-        <label for="email">Enter Email:</label>
-        <input type="email" id="email" placeholder="example@example.com">
-        <button onclick="sendEmail()">&#9993; Send</button>
-    </div>
-
-    <div id="result" class="result"></div>
+    <button onclick="window.location.href='balance_calculator.html'">Go to Balance Calculator</button>
 </body>
 </html>
